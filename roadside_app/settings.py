@@ -145,6 +145,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 try:
-    from connectcenter.local_settings import *
+    from roadside_app.local_settings import *
 except ImportError:
     pass

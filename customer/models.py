@@ -21,11 +21,6 @@ class Vehicle(models.Model):
     tag_no = models.CharField(max_length=12)
     nick_name = models.CharField(max_length=128)
     engine_type = models.CharField(max_length=32)
+    mileage = models.DecimalField(max_digits=9, decimal_places=2)
 
-
-class ServiceCall(models.Model):
-    pass
-
-class Review(models.Model):
-    pass
 

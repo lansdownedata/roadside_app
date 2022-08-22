@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Account(models.Model):
     first_name = models.CharField(max_length=96)
     last_name = models.CharField(max_length=96)
@@ -8,7 +7,12 @@ class Account(models.Model):
     main_phone = models.CharField(max_length=20)
     secondary_phone = models.CharField(max_length=20)
     main_account_holder_id = models.ForeignKey('self', on_delete=models.CASCADE)
+    authorize_profile_id = models.IntegerField()
+    created_on = models.DateTimeField(auto_now=True)
 
+class Payment(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    authorize_payment_id = models.IntegerField()
 
 class Vehicle(models.Model):
     owner_id = models.ForeignKey(Account, on_delete=models.CASCADE)
@@ -22,5 +26,3 @@ class Vehicle(models.Model):
     nick_name = models.CharField(max_length=128)
     engine_type = models.CharField(max_length=32)
     mileage = models.DecimalField(max_digits=9, decimal_places=2)
-
-

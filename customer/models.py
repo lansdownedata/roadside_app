@@ -1,22 +1,21 @@
 from django.db import models
 
-class Account(models.Model):
+class Customer(models.Model):
     first_name = models.CharField(max_length=96)
     last_name = models.CharField(max_length=96)
     email = models.CharField(max_length=96)
     main_phone = models.CharField(max_length=20)
     secondary_phone = models.CharField(max_length=20)
     main_account_holder_id = models.ForeignKey('self', on_delete=models.CASCADE)
-    authorize_profile_id = models.IntegerField()
     created_on = models.DateTimeField(auto_now=True)
 
 class Payment(models.Model):
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    account = models.ForeignKey(Customer, on_delete=models.CASCADE)
     authorize_payment_id = models.IntegerField()
 
 class Vehicle(models.Model):
-    owner_id = models.ForeignKey(Account, on_delete=models.CASCADE)
-    driver_id = models.ForeignKey(Account, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    driver = models.ForeignKey(Customer, on_delete=models.CASCADE)
     make = models.CharField(max_length=64)
     model = models.CharField(max_length=64)
     color = models.CharField(max_length=32)
@@ -26,3 +25,15 @@ class Vehicle(models.Model):
     nick_name = models.CharField(max_length=128)
     engine_type = models.CharField(max_length=32)
     mileage = models.DecimalField(max_digits=9, decimal_places=2)
+
+# class Appointment(models.Model):
+#     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+#     time = models.TimeField()
+#     date = models.DateField()
+
+class VehicleServiceNotification(models.Model):
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+    reminder_interval_in_miles = models.IntegerField()
+    reminder_interval_value = models.IntegerField()
+    reminder_interval_units = models.CharField(max_length=25)
+    last_mileage_serviced = models.DecimalField(max_digits=9, decimal_places=2)

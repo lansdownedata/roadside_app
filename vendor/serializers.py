@@ -1,23 +1,32 @@
 from rest_framework import serializers
-from customer.models import Customer, Payment, Vehicle, VehicleServiceNotification
+from vendor.models import City, CityZip, Company, CompanyLocation, Vehicle, Contact
 
-class CitySerializer(serializers.Serializer):
-    pass
+class CitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = '__all__'
 
-class CityZipSeralizer(serializers.Serializer):
-    pass
+class CityZipSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CityZip
+        fields = '__all__'
 
-class CompanySeralizer(serializers.Serializer):
-    pass
+class CompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = '__all__'
 
-class CompanyCitySeralizer(serializers.Serializer):
-    pass
+class CompanyLocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompanyLocation
+        fields = '__all__'
 
-class VehicleSerializer(serializers.Serializer):
-    pass
+class VehicleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vehicle
+        fields = '__all__'
 
-class ContactSeralizer(serializers.Serializer):
-    pass
-
-class CompanyCitySerializer(serializers.Serializer):
-    pass
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'

@@ -1,5 +1,4 @@
 from django.db import models
-from service.models import Type
 
 # Cities that Roadside App operates
 class City(models.Model):
@@ -16,12 +15,13 @@ class Company(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     hourly_price = models.DecimalField(max_digits=5, decimal_places=2)
 
-class CompanyCity(models.Model):
+class CompanyLocation(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     location_nickname = models.CharField(max_length=100)
 
 class Vehicle(models.Model):
+    company_location = models.ForeignKey(CompanyLocation, on_delete=models.CASCADE)
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
     year = models.CharField(max_length=4)
@@ -31,7 +31,6 @@ class Vehicle(models.Model):
 
 class Contact(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=75)
     last_name = models.CharField(max_length=75)
     email = models.CharField(max_length=100)
@@ -39,8 +38,3 @@ class Contact(models.Model):
     main_phone_ext = models.CharField(max_length=10)
     secondary_phone = models.CharField(max_length=20)
     secondary_phone_ext = models.CharField(max_length=10)
-
-class CompanyCityService(models.Model):
-    type = models.ForeignKey(Type, on_delete=models.CASCADE)
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)

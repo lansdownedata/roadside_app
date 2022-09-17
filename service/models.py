@@ -1,6 +1,6 @@
 from django.db import models
 from customer.models import Customer, Payment, Vehicle as CustomerVeh
-from vendor.models import Company, Contact
+from vendor.models import Company, Contact, City
 
 # Service-type labels
 class Type(models.Model):
@@ -55,3 +55,9 @@ class Review(models.Model):
     ticket_no = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     stars = models.DecimalField(max_digits=4, decimal_places=2)
     comment = models.CharField(max_length=2560, null=True, blank=True)
+
+# Cities in which each company operates
+class CompanyCityService(models.Model):
+    type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)

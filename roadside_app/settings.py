@@ -29,8 +29,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
-PRODUCTION = bool(os.environ.get('PRODUCTION', True))
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +41,10 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'knox',
+
+    'vendor',
+    'customer',
+    'service',
 ]
 
 MIDDLEWARE = [

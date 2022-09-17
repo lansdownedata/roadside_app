@@ -14,8 +14,8 @@ class Payment(models.Model):
     authorize_payment_id = models.IntegerField()
 
 class Vehicle(models.Model):
-    owner = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    driver = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='owner')
+    driver = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='driver')
     make = models.CharField(max_length=64)
     model = models.CharField(max_length=64)
     color = models.CharField(max_length=32)

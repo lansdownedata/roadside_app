@@ -52,6 +52,7 @@ class Part(models.Model):
 
 # Service reviews from customers
 class Review(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     ticket_no = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     stars = models.DecimalField(max_digits=4, decimal_places=2)
     comment = models.CharField(max_length=2560, null=True, blank=True)

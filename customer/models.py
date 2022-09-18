@@ -26,11 +26,6 @@ class Vehicle(models.Model):
     engine_type = models.CharField(max_length=32)
     mileage = models.DecimalField(max_digits=9, decimal_places=2)
 
-# class Appointment(models.Model):
-#     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-#     time = models.TimeField()
-#     date = models.DateField()
-
 class VehicleServiceNotification(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     reminder_interval_in_miles = models.IntegerField()
